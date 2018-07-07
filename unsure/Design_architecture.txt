@@ -8,8 +8,8 @@ I have created initial structure of flask directories and committed in repo
  
 2. Template directory has 3 template files 
 index.html
-submit_complete.html
-upload_complete.html
+result.html
+
 
 Aditi, you can overwrite these with your code for 3 pages as we discussed.
 
@@ -50,7 +50,7 @@ General :
 
 1. Ask user to upload the file. --Template index.html
 
-2. User press upload button --Template upload_complete.html
+2. User press upload button --Template index.html
 
 a. Unique ID is allocated to this operation and its folder has been created on server and 
     saved the file to this new folder. Let's call this .\db\data\uk_id 
@@ -65,13 +65,83 @@ a. Unique ID is allocated to this operation and its folder has been created on s
 	c. Dimension 
 	d. Fact
 
-3. User press submit button  --Template submit_complete.html
+3. User press submit button  --Template result.html
 
 	a. JSON file (details.json) of the column type allocation saved to .\db\data\uk_id folder
 	b. python function has been called like fx_analysis(uk_id)
 	c. Calls fx_result(uk_id) that return 'Processing' or 'Ready'
 	d. if processing then show processing else show result in graph section.
-	   Template (submit_complete.html) can use jpeg file saved for 6 graphs and json files for any data.
+	   Template (result.html) can use jpeg file saved for 6 graphs and json files for any data.
+
+
+	   
+	   
+./UK folder/details.json :
+
+contents :
+
+{
+filename:  'creditcard.csv' ,
+label:  ['c8'] ,
+time_series:  ['c2' , 'c6']  ,
+dimension:  ['c1' , 'c22' , 'c8']  ,
+fact:  ['cc1' , 'cc22' , 'cc8']  ,
+id:  ['c88']  ,
+learning_type : ['supervised']
+}
+
+
+4. fx_analyze (uk)
+
+will read ./UK folder/details.json 
+
+if learning_type= supervised then run fx_supervised (UK) 
+
+5. fx_supervised (UK)
+
+Use :
+./UK folder/details.json
+./UK folder/creditcard.csv
+
+
+
+output : ./UK folder
+
+image1.jpg
+image2.jpg
+image3.jpg
+image4.jpg
+
+
+result.csv
+
+result_desc.json
+
+{
+image_title1:  'jfbgcjshhgsj' ,
+image_title2:  'jfbgcjshhgsj' ,
+image_title3:  'jfbgcjshhgsj' ,
+image_title4:  'jfbgcjshhgsj' ,
+image_name1:  'image1.jpg' ,
+image_name2:  'image2.jpg' ,
+image_name3:  'image3.jpg' ,
+image_name4:  'image4.jpg' ,
+image_desc1:  'jfbgcjshhgsj' ,
+image_desc2:  'jfbgcjshhgsj' ,
+image_desc3:  'jfbgcjshhgsj' ,
+image_desc4:  'jfbgcjshhgsj' ,
+model:  [ {model_desc : 'ssss' ,model_file : 'ssss' } , {model_desc : 'ssss' ,model_file : 'ssss' } ] 
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
