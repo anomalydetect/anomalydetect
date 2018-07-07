@@ -1,0 +1,79 @@
+
+
+I have created initial structure of flask directories and committed in repo
+
+1. Flask directories
+ Please do not change the file names , but you can change the contents inside the files.
+ 
+ 
+2. Template directory has 3 template files 
+index.html
+submit_complete.html
+upload_complete.html
+
+Aditi, you can overwrite these with your code for 3 pages as we discussed.
+
+3. 
+\static\js\code.js file is used for keeping js code.
+
+Aditi please overwrite this file with your code.
+
+4. 
+\static\images directory can be used to keep any static image files
+
+5. 
+\db\analysis.py file should have code for fx_analysis and fx_result used by app.py 
+
+Nish is responsble for that 
+
+6. 
+\db\supervised.py file should have code for supervised learning 
+
+Bill is responsble for that 
+
+
+7. 
+\db\unsupervised.py file should have code for supervised learning 
+
+Nish is responsble for that 
+
+
+
+8. 
+\app.py file has main code for the pages.
+
+Anyone can update that if needed.
+
+
+General :
+
+
+1. Ask user to upload the file. --Template index.html
+
+2. User press upload button --Template upload_complete.html
+
+a. Unique ID is allocated to this operation and its folder has been created on server and 
+    saved the file to this new folder. Let's call this .\db\data\uk_id 
+    Get first row from the file and parse the data
+    Show appropiate data like 	
+    
+	column name from the file, and ask user to assign type of column to each column name.
+	Analysis Type : Supervised  OR Unsupervised
+	Column Types:
+	a. Id column
+	b. Time series
+	c. Dimension 
+	d. Fact
+
+3. User press submit button  --Template submit_complete.html
+
+	a. JSON file (details.json) of the column type allocation saved to .\db\data\uk_id folder
+	b. python function has been called like fx_analysis(uk_id)
+	c. Calls fx_result(uk_id) that return 'Processing' or 'Ready'
+	d. if processing then show processing else show result in graph section.
+	   Template (submit_complete.html) can use jpeg file saved for 6 graphs and json files for any data.
+
+
+
+
+
