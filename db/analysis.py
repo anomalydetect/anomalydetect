@@ -1,6 +1,8 @@
 
 from os import path
 from utils import fix_path
+from db.unsupervised import fx_unsupervised
+from db.supervised import fx_supervised
 
 def fx_analysis(v_uk_id):
 
