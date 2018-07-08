@@ -34,6 +34,40 @@ def fx_unsupervised(v_uk_id):
 	######################
 
     return df_outliers
+	
+def fx_unsupervised_plot(v_uk_id):
+
+	my_path = "data/"+v_uk_id+"/"
+    v_input_json_file = my_path+"details.json"
+	
+	with open(v_input_json_file, encoding="utf-8") as data_file:
+		input_json = json.load(data_file)
+
+    v_input_csv = my_path + input_json['filename']
+    
+	df = pd.read_csv(v_input_csv)
+	
+	######################
+
+	
+	v_output_json_contents = {
+    "image_title1":  "nish1" ,
+    "image_title2":  "jfbgcjshhgsj" ,
+    "image_title3":  "jfbgcjshhgsj" ,
+    "image_title4":  "jfbgcjshhgsj" ,
+    "image_name1":  "image1.png" ,
+    "image_name2":  "image2.png" ,
+    "image_name3":  "image3.png" ,
+    "image_name4":  "image4.png" ,
+    "image_desc1":  "jfbgcjshhgsj" ,
+    "image_desc2":  "jfbgcjshhgsj" ,
+    "image_desc3":  "jfbgcjshhgsj" ,
+    "image_desc4":  "jfbgcjshhgsj" ,
+    "model":  [ {"model_desc" : "ssss" ,"model_file" : "ssss" } , {"model_desc" : "ssss" ,"model_file" : "ssss" } ] 
+    }
+	######################
+	
+    return v_output_json_contents
 
 def fx_ThreeSigmaRule(series_id, series_data, v_number_of_std , v_masking_Iteration):
     '''
