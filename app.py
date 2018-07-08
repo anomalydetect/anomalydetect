@@ -52,7 +52,7 @@ def upload_complete():
     """
     
 
-    return render_template("upload_complete.html")
+    return render_template("index.html")
 
 
 #########################################
@@ -60,7 +60,7 @@ def upload_complete():
 def submit_complete(v_uk_id):
     """
 	a. JSON file of the column type allocation saved to ./uk_id folder
-	b. python function has been called like fx_analysis(uk_id)
+	b. python function has been called like  (uk_id)
 	c. Calls fx_result(uk_id) that return 'Processing' or 'Ready'
 	d. if processing then show processing else show result in graph section.
 	   Template (submit_complete.html) can use jpeg file saved for 6 graphs and json files for any data.
