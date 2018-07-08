@@ -81,13 +81,13 @@ a. Unique ID is allocated to this operation and its folder has been created on s
 contents :
 
 {
-filename:  'creditcard.csv' ,
-label:  ['c8'] ,
-time_series:  ['c2' , 'c6']  ,
-dimension:  ['c1' , 'c22' , 'c8']  ,
-fact:  ['cc1' , 'cc22' , 'cc8']  ,
-id:  ['c88']  ,
-learning_type : ['supervised']
+"filename":  "custom_anomaly_data.csv" ,
+"label":  ["c8"] ,
+"time_series":  ["c2" , "c6"]  ,
+"dimension":  ["c1" , "c22" , "c8"]  ,
+"fact":  ["cc1" , "cc22" , "cc8"]  ,
+"id":  ["c88"]  ,
+"learning_type" : ["supervised"]
 }
 
 
@@ -117,22 +117,31 @@ result.csv
 
 result_desc.json
 
-{
-image_title1:  'jfbgcjshhgsj' ,
-image_title2:  'jfbgcjshhgsj' ,
-image_title3:  'jfbgcjshhgsj' ,
-image_title4:  'jfbgcjshhgsj' ,
-image_name1:  'image1.png' ,
-image_name2:  'image2.png' ,
-image_name3:  'image3.png' ,
-image_name4:  'image4.png' ,
-image_desc1:  'jfbgcjshhgsj' ,
-image_desc2:  'jfbgcjshhgsj' ,
-image_desc3:  'jfbgcjshhgsj' ,
-image_desc4:  'jfbgcjshhgsj' ,
-model:  [ {model_desc : 'ssss' ,model_file : 'ssss' } , {model_desc : 'ssss' ,model_file : 'ssss' } ] 
-}
 
+{  
+  "image_title1":"nish1",
+  "image_title2":"jfbgcjshhgsj",
+  "image_title3":"jfbgcjshhgsj",
+  "image_title4":"jfbgcjshhgsj",
+  "image_name1":"image1.png",
+  "image_name2":"image2.png",
+  "image_name3":"image3.png",
+  "image_name4":"image4.png",
+  "image_desc1":"jfbgcjshhgsj",
+  "image_desc2":"jfbgcjshhgsj",
+  "image_desc3":"jfbgcjshhgsj",
+  "image_desc4":"jfbgcjshhgsj",
+  "model":[  
+     {  
+        "model_desc":"ssss",
+        "model_file":"ssss"
+     },
+     {  
+        "model_desc":"ssss",
+        "model_file":"ssss"
+     }
+  ]
+}
 
 
 
