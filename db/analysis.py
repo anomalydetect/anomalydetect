@@ -5,6 +5,9 @@ from db.unsupervised import fx_unsupervised
 from db.supervised import fx_supervised
 import json
 from pathlib import Path
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 def fx_analysis(v_uk_id):
 
