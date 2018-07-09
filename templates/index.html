@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="stylesheets/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
     <!-- Choose and submit csv file-->
     <div class="container">
       <div class="row margin-top-50">
-        <div class="col-sm-3">
+        <div class="col-sm-12">
           <aside class="selectfile">
             <div class="panel panel-default">
               <div class="panel-heading">Data Extraction</div>
@@ -48,7 +49,7 @@
             <!-- Select Filters-->
             <div class="container">
               <div class="row margin-top-50">
-                <div class="col-md-2">
+                <div class="col-md-12">
                   <aside class="filters">
                     <div class="panel panel-default">
                       <div class="panel-heading">Filter Search</div>
@@ -56,194 +57,29 @@
                         <div class="form-group">
                           <ul class="list-group" id="filters">
                             <li class="filter list-group-item">
-                              <label for="shape">Select ID Column</label>
-                              <select id="shape">
-                                <option default value="">Select</option>
-                                <option value="time">Time</option>
-                                <option value="v1">V1</option>
-                                <option value="v2">V2</option>
-                                <option value="v3">V3</option>
-                                <option value="v4">V4</option>
-                                <option value="v5">V5</option>
-                                <option value="v6">V6</option>
-                                <option value="v7">V7</option>
-                                <option value="v8">V8</option>
-                                <option value="v9">V9</option>
-                                <option value="v10">V10</option>
-                                <option value="v11">V11</option>
-                                <option value="v12">V12</option>
-                                <option value="v13">V13</option>
-                                <option value="v14">V14</option>
-                                <option value="v15">V15</option>
-                                <option value="v16">V16</option>
-                                <option value="v17">V17</option>
-                                <option value="v18">V18</option>
-                                <option value="v19">V19</option>
-                                <option value="v20">V20</option>
-                                <option value="v21">V21</option>
-                                <option value="v22">V22</option>
-                                <option value="v23">V23</option>
-                                <option value="v24">V24</option>
-                                <option value="v25">V25</option>
-                                <option value="v26">V2</option>
-                                <option value="v27">V3</option>
-                                <option value="v28">V4</option>
-                                <option value="Amount">Amount</option>
-                                <option value="Class">Class</option>
-                              </select>
+                              <label for="id">Select ID Column</label>
+                              <select id="id" multiple> </select>                  
                             </li>
                             <li class="filter list-group-item">
-                              <label for="time">Select Time Series Column</label>
-                              <select id="time">
-                                <option default value="">Select</option>
-                                <option value="time">Time</option>
-                                <option value="v1">V1</option>
-                                <option value="v2">V2</option>
-                                <option value="v3">V3</option>
-                                <option value="v4">V4</option>
-                                <option value="v5">V5</option>
-                                <option value="v6">V6</option>
-                                <option value="v7">V7</option>
-                                <option value="v8">V8</option>
-                                <option value="v9">V9</option>
-                                <option value="v10">V10</option>
-                                <option value="v11">V11</option>
-                                <option value="v12">V12</option>
-                                <option value="v13">V13</option>
-                                <option value="v14">V14</option>
-                                <option value="v15">V15</option>
-                                <option value="v16">V16</option>
-                                <option value="v17">V17</option>
-                                <option value="v18">V18</option>
-                                <option value="v19">V19</option>
-                                <option value="v20">V20</option>
-                                <option value="v21">V21</option>
-                                <option value="v22">V22</option>
-                                <option value="v23">V23</option>
-                                <option value="v24">V24</option>
-                                <option value="v25">V25</option>
-                                <option value="v26">V2</option>
-                                <option value="v27">V3</option>
-                                <option value="v28">V4</option>
-                                <option value="Amount">Amount</option>
-                                <option value="Class">Class</option>
-                              </select>
+                              <label for="time-series">Select Time Series Column</label>
+                              <select id="time-series" multiple></select>
+                              
                             </li>
                             <li class="filter list-group-item">
-                              <label for="shape">Select Dimension Column</label>
-                              <select id="shape">
-                                <option default value="">Select</option>
-                                <option value="time">Time</option>
-                                <option value="v1">V1</option>
-                                <option value="v2">V2</option>
-                                <option value="v3">V3</option>
-                                <option value="v4">V4</option>
-                                <option value="v5">V5</option>
-                                <option value="v6">V6</option>
-                                <option value="v7">V7</option>
-                                <option value="v8">V8</option>
-                                <option value="v9">V9</option>
-                                <option value="v10">V10</option>
-                                <option value="v11">V11</option>
-                                <option value="v12">V12</option>
-                                <option value="v13">V13</option>
-                                <option value="v14">V14</option>
-                                <option value="v15">V15</option>
-                                <option value="v16">V16</option>
-                                <option value="v17">V17</option>
-                                <option value="v18">V18</option>
-                                <option value="v19">V19</option>
-                                <option value="v20">V20</option>
-                                <option value="v21">V21</option>
-                                <option value="v22">V22</option>
-                                <option value="v23">V23</option>
-                                <option value="v24">V24</option>
-                                <option value="v25">V25</option>
-                                <option value="v26">V2</option>
-                                <option value="v27">V3</option>
-                                <option value="v28">V4</option>
-                                <option value="Amount">Amount</option>
-                                <option value="Class">Class</option>
-                              </select>
+                              <label for="dimesion">Select Dimension Column</label>
+                              <select id="dimension" multiple></select>
                             </li>
                             <li class="filter list-group-item">
-                              <label for="shape">Select Label Column</label>
-                              <select id="shape">
-                                <option default value="">Select</option>
-                                <option value="time">Time</option>
-                                <option value="v1">V1</option>
-                                <option value="v2">V2</option>
-                                <option value="v3">V3</option>
-                                <option value="v4">V4</option>
-                                <option value="v5">V5</option>
-                                <option value="v6">V6</option>
-                                <option value="v7">V7</option>
-                                <option value="v8">V8</option>
-                                <option value="v9">V9</option>
-                                <option value="v10">V10</option>
-                                <option value="v11">V11</option>
-                                <option value="v12">V12</option>
-                                <option value="v13">V13</option>
-                                <option value="v14">V14</option>
-                                <option value="v15">V15</option>
-                                <option value="v16">V16</option>
-                                <option value="v17">V17</option>
-                                <option value="v18">V18</option>
-                                <option value="v19">V19</option>
-                                <option value="v20">V20</option>
-                                <option value="v21">V21</option>
-                                <option value="v22">V22</option>
-                                <option value="v23">V23</option>
-                                <option value="v24">V24</option>
-                                <option value="v25">V25</option>
-                                <option value="v26">V2</option>
-                                <option value="v27">V3</option>
-                                <option value="v28">V4</option>
-                                <option value="Amount">Amount</option>
-                                <option value="Class">Class</option>
-                              </select>
+                              <label for="label">Select Label Column</label>
+                              <select id="label" multiple></select>
                             </li>
                             <li class="filter list-group-item">
-                              <label for="count">Select Fact Column</label>
-                              <select id="count">
-                                <option default value="">Select</option>
-                                <option value="time">Time</option>
-                                <option value="v1">V1</option>
-                                <option value="v2">V2</option>
-                                <option value="v3">V3</option>
-                                <option value="v4">V4</option>
-                                <option value="v5">V5</option>
-                                <option value="v6">V6</option>
-                                <option value="v7">V7</option>
-                                <option value="v8">V8</option>
-                                <option value="v9">V9</option>
-                                <option value="v10">V10</option>
-                                <option value="v11">V11</option>
-                                <option value="v12">V12</option>
-                                <option value="v13">V13</option>
-                                <option value="v14">V14</option>
-                                <option value="v15">V15</option>
-                                <option value="v16">V16</option>
-                                <option value="v17">V17</option>
-                                <option value="v18">V18</option>
-                                <option value="v19">V19</option>
-                                <option value="v20">V20</option>
-                                <option value="v21">V21</option>
-                                <option value="v22">V22</option>
-                                <option value="v23">V23</option>
-                                <option value="v24">V24</option>
-                                <option value="v25">V25</option>
-                                <option value="v26">V2</option>
-                                <option value="v27">V3</option>
-                                <option value="v28">V4</option>
-                                <option value="Amount">Amount</option>
-                                <option value="Class">Class</option>
-
-                              </select>
+                              <label for="fact">Select Fact Column</label>
+                              <select id="fact" multiple></select>                            
                             </li>
                             <li class="filter list-group-item">
-                              <label for="shape">Select Model Type</label>
-                              <select id="shape">
+                              <label for="model">Select Model Type</label>
+                              <select id="model">
                                 <option default value="">Select</option>
                                 <option value="v1">Supervised</option>
                                 <option value="v2">Unsupervised</option>
@@ -257,7 +93,7 @@
                     <!-- Submit selected data-->
                     <div class="container">
                       <div class="row margin-top-50">
-                        <div class="col-md-2">
+                        <div class="col-md-12">
                           <aside class="datasubmit">
                             <div class="panel panel-default">
                               <div class="panel-heading">Submit Data</div>
