@@ -8,79 +8,87 @@ from statsmodels.stats.stattools import medcouple
 import json
 
 def fx_unsupervised(v_uk_id):
-	#v_uk_id= 123456
-	my_path = "data/" + v_uk_id + "/"
-	v_input_json_file = my_path + "details.json"
+    #v_uk_id= 123456
+    my_path = "data/" + v_uk_id + "/"
+    v_input_json_file = my_path + "details.json"
+    v_output_json_file = my_path + "result_desc.json"
+    v_output_result_csv = my_path+"result_individual_columns.csv"
+    v_output_result_csv = my_path+"result.csv"
+    with open(v_input_json_file, encoding="utf-8") as data_file:
+        input_json = json.load(data_file)
 
-	with open(v_input_json_file, encoding="utf-8") as data_file:
-		input_json = json.load(data_file)
+    v_input_csv = my_path + input_json['filename']
 
-	v_input_csv = my_path + input_json['filename']
+    df = pd.read_csv(v_input_csv)
+    df['anomalydetectid']=df.index
+    ######################
+    v_id = 'anomalydetectid'
+    v_analysis_columns_list = input_json['dimension'] 
+    df_outliers = pd.DataFrame({})
+    #v_analysis_columns = ''.join(v_analysis_columns_list)
+    for my_analysis_column in v_analysis_columns_list:
+        v_df_temp = fx_ThreeSigmaRule(df[v_id], df[my_analysis_column], 2, 1)
+        v_df_temp['Outlier Type'] = 'Three Sigma Rule'
+        v_df_temp['Analysis Column'] = my_analysis_column
+        df_outliers = pd.concat([df_outliers, v_df_temp])
+    ######################
+    
+    df_outliers.to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
 
-	df = pd.read_csv(v_input_csv)
-	df['anomalydetectid']=df.index
-	######################
-	v_id = 'anomalydetectid'
-	v_analysis_columns_list = input_json['dimension'] 
-	df_outliers = pd.DataFrame({})
-	#v_analysis_columns = ''.join(v_analysis_columns_list)
-	for my_analysis_column in v_analysis_columns_list:
-		v_df_temp = fx_ThreeSigmaRule(df[v_id], df[my_analysis_column], 2, 1)
-		v_df_temp['Outlier Type'] = 'Three Sigma Rule'
-		v_df_temp['Analysis Column'] = my_analysis_column
-		df_outliers = pd.concat([df_outliers, v_df_temp])
-	######################
-	v_output_result_csv = my_path+"result_individual_columns.csv"
-	df_outliers.to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
+    x_groupby_type = df_outliers.groupby(['Analysis Column'])
+    df2 = x_groupby_type.count()
+    df2.reset_index(inplace=True)
+    df3 = df2.sort_values(['data'], ascending=True).head(4)
 
-	x_groupby_type = df1.groupby(['Analysis Column'])
-	df2 = x_groupby_type.count()
-	df2.reset_index(inplace=True)
-	df3 = df2.sort_values(['data'], ascending=True).head(4)
+    for i, r in df3.iterrows():
+        v_filename = 'image'+str(i)
+        v_list = df.loc[:, [r['Analysis Column']]]
+        v_title = 'Outliers for '+r['Analysis Column']
+        v_column=r['Analysis Column']
+        #fx_box_plot (v_uk_id,v_list , v_title,v_filename )
+        #plt.scatter(df['anomalydetectid'].values,df[v_column].values)
+        fx_scatter_plot(v_uk_id,df['anomalydetectid'].values,df[v_column].values, v_title,v_filename)
 
-	for i, r in df3.iterrows():
-		v_filename = 'image'+str(i)
-		v_list = df.loc[:, [r['Analysis Column']]]
-		v_title = 'Outliers for '+r['Analysis Column']
-		fx_box_plot (v_uk_id,v_list , v_title,v_filename )
-
-
-	return df_outliers
-
-
-def fx_unsupervised_plot(v_uk_id):
-	my_path = "data/" + v_uk_id + "/"
-	v_input_json_file = my_path + "details.json"
-
-	with open(v_input_json_file, encoding="utf-8") as data_file:
-		input_json = json.load(data_file)
-
-	v_input_csv = my_path + input_json['filename']
-
-	df = pd.read_csv(v_input_csv)
-
-	######################
+    ##################################json code 
+    v_output_json_contents = {
+            "image_title1": "nish1",
+            "image_title2": "jfbgcjshhgsj",
+            "image_title3": "jfbgcjshhgsj",
+            "image_title4": "jfbgcjshhgsj",
+            "image_name1": "image1.png",
+            "image_name2": "image2.png",
+            "image_name3": "image3.png",
+            "image_name4": "image4.png",
+            "image_desc1": "jfbgcjshhgsj",
+            "image_desc2": "jfbgcjshhgsj",
+            "image_desc3": "jfbgcjshhgsj",
+            "image_desc4": "jfbgcjshhgsj",
+            "model": [{"model_desc": "ssss", "model_file": "ssss"}, {"model_desc": "ssss", "model_file": "ssss"}]
+        }
+        
+    
+    with open(v_output_json_file, 'w') as outfile:
+        json.dump(v_output_json_contents, outfile)
+    ##################################    
+    return df_outliers
+	
+	
 
 
-	v_output_json_contents = {
-		"image_title1": "nish1",
-		"image_title2": "jfbgcjshhgsj",
-		"image_title3": "jfbgcjshhgsj",
-		"image_title4": "jfbgcjshhgsj",
-		"image_name1": "image1.png",
-		"image_name2": "image2.png",
-		"image_name3": "image3.png",
-		"image_name4": "image4.png",
-		"image_desc1": "jfbgcjshhgsj",
-		"image_desc2": "jfbgcjshhgsj",
-		"image_desc3": "jfbgcjshhgsj",
-		"image_desc4": "jfbgcjshhgsj",
-		"model": [{"model_desc": "ssss", "model_file": "ssss"}, {"model_desc": "ssss", "model_file": "ssss"}]
-	}
-	######################
-
-	return v_output_json_contents
-
+def fx_scatter_plot (v_uk_id , v_id_series,v_column_series , v_title,v_filename ):
+    my_path = "data/" + v_uk_id + "/"
+    fig, ax = plt.subplots()
+    jpg_filename = my_path + v_filename+'.jpg'
+    png_filename = my_path + v_filename
+    ax.scatter(v_id_series,v_column_series)
+    ax.set_title(v_title)
+    fig.tight_layout()
+    #fig.show()
+    fig.savefig(jpg_filename, dpi=1000)
+    fig.savefig(png_filename+'.png', dpi=1000)
+	
+	
+	
 def fx_box_plot (v_uk_id,v_list , v_title,v_filename ):
     my_path = "data/" + v_uk_id + "/"
     fig, ax = plt.subplots()
