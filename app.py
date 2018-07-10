@@ -27,11 +27,32 @@ app.config.from_object(config[config_name])
 
 #CORS(app, headers=['Content-Type'])
 
-		
+
 ######################################################
-		
 
+@app.route('/submit_form', methods=['GET', 'POST'])
+def model_upload():
+    if request.method == 'POST':
+        id = request.form.get('id')
+        time_series = request.form.get('time-series')
+        dimension = request.form.get('dimension')
+        label = request.form.get('label')
+        fact = request.form.get('fact')
+        model = request.form.get('model')
 
+        # to debug
+        form = dict(request.form)
+        for k, v in form.items():
+            print(str(k) + ":" + str(v))
+
+        # call model, do magic and return to template
+        return ('Got: id={}, time_series={}, dimension={}, label={}, fact={}, model={}'
+                .format(id, time_series, dimension, label, fact, model))
+
+    else:
+        return "Nothing to see here."
+
+######################################################
 
 # create route that renders index.html template
 @app.route("/")
@@ -48,9 +69,9 @@ def upload_complete():
 	create directory /uk_id on server
 	upload the file to ./uk_id directory on server
 	Get first row from the file and parse the data
-    Show appropiate data	
+    Show appropiate data
     """
-    
+
 
     return render_template("index.html")
 
@@ -65,8 +86,8 @@ def submit_complete(v_uk_id):
 	d. if processing then show processing else show result in graph section.
 	   Template (submit_complete.html) can use jpeg file saved for 6 graphs and json files for any data.
     """
-	
-	
+
+
     return render_template("submit_complete.html")
 
 
