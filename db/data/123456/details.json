@@ -1,12 +1,11 @@
 {
 "filename":  "custom_anomaly_data.csv" ,
-"label":  ["c8"] ,
-"time_series":  ["c2" , "c6"]  ,
-"dimension":  ["c1" , "c22" , "c8"]  ,
-"fact":  ["cc1" , "cc22" , "cc8"]  ,
-"id":  ["c88"]  ,
-"learning_type" : ["supervised"]
+"label":  ["label"] ,
+"time_series":  ["series1"]  ,
+"dimension":  ["dim1_v1" , "dim1_v2" , "dim2_v1" , "dim2_v2","dim2_v3"]  ,
+"fact":  ["fact2" , "fact1"]  ,
+"id":  ["myid"]  ,
+"learning_type" : ["unsupervised"]
 }
-
 
 
