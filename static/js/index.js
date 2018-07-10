@@ -1,5 +1,7 @@
-
+//**************************************************//
 // Showing data on the grid
+//**************************************************//
+
 const file = document.getElementById('file')
 const reader = new FileReader()
 
@@ -43,8 +45,16 @@ file.addEventListener('change', function(e) {
     reader.readAsText(f)
 });
 
+//**************************************************//
+//Saving .CSV in server
+//**************************************************//
 
+//TBD
+
+
+//**************************************************//
 // Populating drop down menus from csv file
+//**************************************************//
 function renderCSVDropdown(csv){
     var dropdown = $('select#id, select#label, select#time-series, select#dimension,select#fact');
 
