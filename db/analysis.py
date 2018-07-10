@@ -25,29 +25,11 @@ def fx_analysis(v_uk_id):
     
     v_learning_type = input_json['learning_type']
     
-    
-    ##################### Temp code
-    df = pd.read_csv(v_input_csv)
-    df_result=df.head(50)
-    df_result.to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
-    
-    v_output_json_contents = {
-    "image_title1":  "nish1" ,
-    "image_title2":  "jfbgcjshhgsj" ,
-    "image_title3":  "jfbgcjshhgsj" ,
-    "image_title4":  "jfbgcjshhgsj" ,
-    "image_name1":  "image1.png" ,
-    "image_name2":  "image2.png" ,
-    "image_name3":  "image3.png" ,
-    "image_name4":  "image4.png" ,
-    "image_desc1":  "jfbgcjshhgsj" ,
-    "image_desc2":  "jfbgcjshhgsj" ,
-    "image_desc3":  "jfbgcjshhgsj" ,
-    "image_desc4":  "jfbgcjshhgsj" ,
-    "model":  [ {"model_desc" : "ssss" ,"model_file" : "ssss" } , {"model_desc" : "ssss" ,"model_file" : "ssss" } ] 
-    }
-    with open(v_output_json_file, 'w') as outfile:
-        json.dump(v_output_json_contents, outfile)
+	
+	if v_learning_type == 'unsupervised' :
+		fx_unsupervised(v_uk_id)
+	else :
+		fx_unsupervised(v_uk_id)
     
 
     return 'Success'
