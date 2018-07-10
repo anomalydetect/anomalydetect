@@ -73,20 +73,6 @@ select {
   outline: none;
 }
 
-/* When the page intially loads, hide the table. It will be made visible with JavaScript once the data is ready */
-#detect-table {
-  /* visibility: hidden; */
-}
-
-#table-area th {
-  text-align: center;
-}
-
-#table-area th:first-child,
-#table-area th:nth-child(2),
-#table-area th:nth-child(6) {
-  min-width:90px;
-}
 
 .loader {
   margin-top: 50px;
@@ -165,6 +151,25 @@ select {
     display: none;
   }
 
+  #table-area tr td:first-child {
+    font-size: 1.8em;
+    font-weight: bold;
+    background: #1b3146;
+  }
+
+  #table-area tr td:last-child {
+    margin-bottom: 20px;
+  }
+
+  #table-area tr td:last-child::after {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    content: " ";
+    background: aliceblue;
+  }
+
 
 
   .hero h1 {
@@ -239,7 +244,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 
   /* Visual */
-  background-color: #08176d;
+  background-color: #1e223a;
 }
 
 /* Media query for body */
