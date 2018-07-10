@@ -55,32 +55,33 @@
                     <div class="panel panel-default">
                       <div class="panel-heading">Filter Search</div>
                       <div class="panel-body">
+                        <form id="myForm" method="post" action="/submit_form">
                         <div class="form-group">
                           <ul class="list-group" id="filters">
                             <li class="filter list-group-item">
                               <label for="id">Select ID Column</label>
-                              <select id="id" multiple> </select>                  
+                              <select id="id" name="id" multiple> </select>
                             </li>
                             <li class="filter list-group-item">
                               <label for="time-series">Select Time Series Column</label>
-                              <select id="time-series" multiple></select>
-                              
+                              <select id="time-series" name="time-series" multiple></select>
+
                             </li>
                             <li class="filter list-group-item">
                               <label for="dimesion">Select Dimension Column</label>
-                              <select id="dimension" multiple></select>
+                              <select id="dimension" name="dimension" multiple></select>
                             </li>
                             <li class="filter list-group-item">
                               <label for="label">Select Label Column</label>
-                              <select id="label" multiple></select>
+                              <select id="label" name="label" multiple></select>
                             </li>
                             <li class="filter list-group-item">
                               <label for="fact">Select Fact Column</label>
-                              <select id="fact" multiple></select>                            
+                              <select id="fact" name="fact" multiple></select>
                             </li>
                             <li class="filter list-group-item">
                               <label for="model">Select Model Type</label>
-                              <select id="model">
+                              <select id="model" name="model">
                                 <option default value="">Select</option>
                                 <option value="v1">Supervised</option>
                                 <option value="v2">Unsupervised</option>
@@ -88,6 +89,7 @@
                             </li>
                           </ul>
                         </div>
+                        </form>
                       </div>
                     </div>
 
@@ -136,7 +138,7 @@
               <tbody></tbody>
             </table>
           </div>
-        </div>      
+        </div>
       <div class="row">
         <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2 text-center pagination-container">
           <ul class="pagination" id="pagination">
@@ -164,6 +166,9 @@
                                 elem.style.width = width + '%';
                               }
                             }
+
+                            //submit form
+                            $('form#myForm').submit();
                           }
                         </script>
 
