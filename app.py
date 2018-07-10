@@ -7,10 +7,11 @@ from flask import (
     render_template,
     jsonify,
     request,
-    redirect)
+    redirect,
+    url_for)
 
 from config import config
-
+from werkzeug.utils import secure_filename
 #sys.path.insert(0, './db')
 from db.analysis import fx_analysis, fx_result
 
@@ -65,16 +66,48 @@ def home():
 
 @app.route('/upload')
 def upload_complete():
-    """
-	create directory /uk_id on server
-	upload the file to ./uk_id directory on server
-	Get first row from the file and parse the data
-    Show appropiate data
-    """
+
+    """Saves imported folder to server"""
+
+    UPLOAD_FOLDER = 'db/data'
+    ALLOWED_EXTENSIONS = set(['csv'])
+
+    app = Flask(__name__)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
     return render_template("index.html")
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+    return ''
+
+    from flask import send_from_directory
+
+    @app.route('/uploads/<filename>')
+    def uploaded_file(filename):
+        return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 #########################################
 @app.route('/submit/<v_uk_id>')
@@ -88,7 +121,7 @@ def submit_complete(v_uk_id):
     """
 
 
-    return render_template("submit_complete.html")
+    return render_template("result.html")
 
 
 #################################################
