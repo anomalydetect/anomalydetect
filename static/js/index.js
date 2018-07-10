@@ -11,6 +11,9 @@ reader.addEventListener("load", function(e) {
 
     //var csv1 = CSVToArray(data);
     renderCSVDropdown(data);
+     //Submit File form
+    //debugger;
+    $('form#myFile').submit()
 
     d3.select("body")
         .append("table")
@@ -46,20 +49,12 @@ file.addEventListener('change', function(e) {
 });
 
 //**************************************************//
-//Saving .CSV in server
-//**************************************************//
-
-//TBD
-
-
-//**************************************************//
 // Populating drop down menus from csv file
 //**************************************************//
 function renderCSVDropdown(csv){
     var dropdown = $('select#id, select#label, select#time-series, select#dimension,select#fact');
 
     var record = csv[0];
-    //debugger;
     var keys = Object.keys(record);
         for(var i = 0; i < keys.length; i++) {
             var option = $('<option value="'+keys[i]+'">'+keys[i]+'</option>');
