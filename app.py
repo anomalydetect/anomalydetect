@@ -57,7 +57,7 @@ def model_upload():
 
 		# call model, do magic and return to template
 		# v_my_id should be supplied here 
-		v_my_id = '123456'
+		v_my_id = app.config['UNIQUE_ID']
 		fx_analysis(v_my_id)
 		
 		return ('Got: time_series={}, dimension={}, label={}, fact={}, model={}'
@@ -104,7 +104,7 @@ def upload_complete():
 
 	ALLOWED_EXTENSIONS = set(['csv'])
 
-	return render_template("index.html")
+	return render_template("index.html" , v_upload_folder = v_upload_folder)
 
 
 
@@ -154,7 +154,7 @@ def submit_complete(v_uk_id):
 	"""
 	print("I am in submit/uk route", file=sys.stderr)
 	print("I am in submit/uk route", file=sys.stdout)
-	v_result_csv_url = 'db/database/123456/result.csv'
+	v_result_csv_url = app.config['UPLOAD_FOLDER'] + '/result.csv'
 	return render_template("result.html", v_result_csv_url=v_result_csv_url)
 
 
