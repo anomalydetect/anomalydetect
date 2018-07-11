@@ -153,8 +153,8 @@ def submit_complete(v_uk_id):
 	"""
 	print("I am in submit/uk route", file=sys.stderr)
 	print("I am in submit/uk route", file=sys.stdout)
-
-	return render_template("result.html")
+	v_result_csv_url = 'db/database/123456/result.csv'
+	return render_template("result.html", v_result_csv_url=v_result_csv_url)
 
 
 #################################################
