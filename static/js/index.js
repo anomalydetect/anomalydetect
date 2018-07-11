@@ -1,5 +1,5 @@
 //**************************************************//
-// Showing data on the grid
+// Loading CSV File
 //**************************************************//
 
 const file = document.getElementById('file')
@@ -11,16 +11,16 @@ reader.addEventListener("load", function(e) {
 
     //var csv1 = CSVToArray(data);
     renderCSVDropdown(data);
+
      //Submit File form
     //debugger;
     $('form#myFile').submit()
 
-    d3.select("body")
-        .append("table")
-        .attr("id", "myTable")
-        .append("thead")
-        .append("tr")
-        .html(function(d) {
+//**************************************************//
+// Showing data on the grid
+//**************************************************//
+
+    d3.select("body").append("table").attr("id", "myTable").append("thead").append("tr").html(function(d) {
             return data.columns.map((text) => `<th>${text.trim()}</th>`).join("\n")
         })
 
