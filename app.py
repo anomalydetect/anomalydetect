@@ -64,8 +64,24 @@ def model_upload():
 				.format(id, time_series, dimension, label, fact, model))
 
 
-		###########		with open('data.json', 'w') as f:
-       	###########		 json.dump(request.form, f)
+		my_path = app.config['UPLOAD_FOLDER'] + "/"
+		v_output_json_file = my_path + "details.json"
+
+		##################################json code
+		v_output_json_contents = {
+		"filename":  "custom_anomaly_data.csv" ,
+		"label":  ["label"] ,
+		"time_series":  ["series1"]  ,
+		"dimension":  ["dim1_v1" , "dim1_v2" , "dim2_v1" , "dim2_v2","dim2_v3"]  ,
+		"fact":  ["fact2" , "fact1"]  ,
+		"id":  ["myid"]  ,
+		"learning_type" : ["unsupervised"]
+		}
+
+		   
+
+		with open(v_output_json_file, 'w') as outfile:
+		   json.dump(v_output_json_contents, outfile)
 
 
 	else:
