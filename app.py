@@ -39,8 +39,8 @@ def fx_uniqueid():
 
 @app.route('/submit_form', methods=['GET', 'POST'])
 def model_upload():
-	print("I am in root route with post", file=sys.stderr)
-	print("I am in root route with post", file=sys.stdout)
+	print("I am in submit_form route with post", file=sys.stderr)
+	print("I am in submit_form route with post", file=sys.stdout)
 	if request.method == 'POST':
 		id = request.form.get('id')
 		time_series = request.form.get('time-series')
