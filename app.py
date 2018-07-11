@@ -88,6 +88,9 @@ def upload_complete():
 	print("I am in upload route", file=sys.stderr)
 	print("I am in upload route", file=sys.stdout)
 	ALLOWED_EXTENSIONS = set(['csv'])
+	
+	fx_analysis(str(my_id))
+	#fx_analysis('123456')
 
 	app = Flask(__name__)
 	app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

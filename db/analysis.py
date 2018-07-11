@@ -12,7 +12,7 @@ import pandas as pd
 def fx_analysis(v_uk_id):
 
 
-    my_path = "data/"+v_uk_id+"/"
+    my_path = "db/data/"+v_uk_id+"/"
     v_input_json_file = my_path+"details.json"
     v_output_result_csv = my_path+"result.csv"
     v_output_json_file = my_path+"result_desc.json"
