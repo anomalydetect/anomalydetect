@@ -108,6 +108,7 @@ def upload_complete():
 	unique_sequence = fx_uniqueid()
 	my_id = next(unique_sequence)
 	app.config['UNIQUE_ID'] = str(my_id)
+	v_unique_id = app.config['UNIQUE_ID']
 	v_upload_folder = app.config['UPLOAD_BASE'] + app.config['UNIQUE_ID'] 
 	app.config['UPLOAD_FOLDER'] = v_upload_folder 
 	### 
@@ -120,7 +121,7 @@ def upload_complete():
 
 	ALLOWED_EXTENSIONS = set(['csv'])
 
-	return render_template("index.html" , v_upload_folder = v_upload_folder)
+	return render_template("index.html" , v_upload_folder = v_upload_folder , v_unique_id = v_unique_id)
 
 
 
