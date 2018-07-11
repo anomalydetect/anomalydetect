@@ -57,6 +57,7 @@ def model_upload():
 		# v_my_id should be supplied here 
 		v_my_id = '123456'
 		fx_analysis(v_my_id)
+		
 		return ('Got: time_series={}, dimension={}, label={}, fact={}, model={}'
 				.format(id, time_series, dimension, label, fact, model))
 
@@ -83,7 +84,8 @@ def upload_complete():
 	### set upload folder 
 	unique_sequence = fx_uniqueid()
 	my_id = next(unique_sequence)
-	v_upload_folder = app.config['UPLOAD_BASE'] + str(my_id) 
+	app.config['UNIQUE_ID'] = str(my_id)
+	v_upload_folder = app.config['UPLOAD_BASE'] + app.config['UNIQUE_ID'] 
 	app.config['UPLOAD_FOLDER'] = v_upload_folder 
 	### 
 	os.makedirs(app.config['UPLOAD_FOLDER'])
