@@ -3,6 +3,8 @@ import os
 import sys
 import numpy as np
 import pandas as pd
+from flask import send_from_directory
+import json
 from flask import (
     Flask,
     render_template,
@@ -61,6 +63,11 @@ def model_upload():
 		return ('Got: time_series={}, dimension={}, label={}, fact={}, model={}'
 				.format(id, time_series, dimension, label, fact, model))
 
+
+		###########		with open('data.json', 'w') as f:
+       	###########		 json.dump(request.form, f)
+
+
 	else:
 		return "Nothing to see here."
 
@@ -97,12 +104,7 @@ def upload_complete():
 
 	ALLOWED_EXTENSIONS = set(['csv'])
 
-
-	
-
-
 	return render_template("index.html")
-
 
 
 
@@ -132,8 +134,7 @@ def upload_file():
 			return redirect(url_for('uploaded_file',
 									filename=filename))
 	return ''
-
-from flask import send_from_directory
+	
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
