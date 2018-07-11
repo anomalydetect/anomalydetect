@@ -171,8 +171,14 @@ def submit_complete(v_uk_id):
 	"""
 	print("I am in submit/uk route", file=sys.stderr)
 	print("I am in submit/uk route", file=sys.stdout)
-	v_result_csv_url = app.config['UPLOAD_FOLDER'] + '/result.csv'
-	return render_template("result.html", v_result_csv_url=v_result_csv_url)
+	
+	v_status = fx_result(v_uk_id)
+	
+	v_upload_folder = app.config['UPLOAD_BASE'] + v_uk_id
+	v_result_csv_url = v_upload_folder + '/result.csv'
+	
+	
+	return render_template("result.html", v_result_csv_url=v_result_csv_url , v_status = v_status)
 
 
 #################################################
