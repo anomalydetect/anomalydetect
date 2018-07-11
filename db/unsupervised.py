@@ -9,7 +9,7 @@ import json
 
 def fx_unsupervised(v_uk_id):
     #v_uk_id= 123456
-    my_path = "data/" + v_uk_id + "/"
+    my_path = "db/data/" + v_uk_id + "/"
     v_input_json_file = my_path + "details.json"
     v_output_json_file = my_path + "result_desc.json"
     v_output_result_csv = my_path+"result_individual_columns.csv"
@@ -76,7 +76,7 @@ def fx_unsupervised(v_uk_id):
 
 
 def fx_scatter_plot (v_uk_id , v_id_series,v_column_series , v_title,v_filename ):
-    my_path = "data/" + v_uk_id + "/"
+    my_path = "db/data/" + v_uk_id + "/"
     fig, ax = plt.subplots()
     jpg_filename = my_path + v_filename+'.jpg'
     png_filename = my_path + v_filename
@@ -90,7 +90,7 @@ def fx_scatter_plot (v_uk_id , v_id_series,v_column_series , v_title,v_filename 
 	
 	
 def fx_box_plot (v_uk_id,v_list , v_title,v_filename ):
-    my_path = "data/" + v_uk_id + "/"
+    my_path = "db/data/" + v_uk_id + "/"
     fig, ax = plt.subplots()
     jpg_filename = my_path + v_filename+'.jpg'
     png_filename = my_path + v_filename+'.png'
