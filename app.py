@@ -14,7 +14,7 @@ from config import config
 from werkzeug.utils import secure_filename
 #sys.path.insert(0, './db')
 from db.analysis import fx_analysis, fx_result
-
+import random
 #from flask.ext.cors import CORS
 #################################################
 # Flask Setup
@@ -29,6 +29,11 @@ app.config.from_object(config[config_name])
 #CORS(app, headers=['Content-Type'])
 
 
+def fx_uniqueid():
+    seed = random.getrandbits(32)
+    while True:
+       yield seed
+       seed += 1
 ######################################################
 
 @app.route('/submit_form', methods=['GET', 'POST'])
@@ -69,7 +74,13 @@ def upload_complete():
 
     """Saves imported folder to server"""
 
-    UPLOAD_FOLDER = 'db/data'
+    unique_sequence = fx_uniqueid()
+    my_id = next(unique_sequence)
+
+    UPLOAD_FOLDER = 'db/data' + str(my_id)
+
+    os.makedirs(UPLOAD_FOLDER)
+
     ALLOWED_EXTENSIONS = set(['csv'])
 
     app = Flask(__name__)
@@ -77,6 +88,7 @@ def upload_complete():
 
 
     return render_template("index.html")
+
 
 
 def allowed_file(filename):

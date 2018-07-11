@@ -25,11 +25,11 @@ def fx_analysis(v_uk_id):
     
     v_learning_type = input_json['learning_type']
     
-	
-	if v_learning_type == 'unsupervised' :
-		fx_unsupervised(v_uk_id)
-	else :
-		fx_unsupervised(v_uk_id)
+
+    if v_learning_type == 'unsupervised' :
+        fx_unsupervised(v_uk_id)
+    else :
+        fx_unsupervised(v_uk_id)
     
 
     return 'Success'
