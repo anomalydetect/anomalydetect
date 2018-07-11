@@ -82,7 +82,7 @@ def upload_complete():
 	unique_sequence = fx_uniqueid()
 	my_id = next(unique_sequence)
 
-	UPLOAD_FOLDER = 'db/data' + str(my_id) 
+	UPLOAD_FOLDER = 'db/data/' + str(my_id) 
 
 	os.makedirs(UPLOAD_FOLDER)
 	print("I am in upload route", file=sys.stderr)
