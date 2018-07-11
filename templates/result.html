@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
+   <!-- jQuery CDN -->
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+   <!-- Bootstrap CDN -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Bootstrap Visualization Dashboard</title>
+    <title>Anomaly Detection Analysis</title>
 
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="../static/stylesheets/bootstrap.min.css" media="screen">
@@ -41,45 +48,35 @@
           <hr class="description-hr">
           <p class="description-text">Outlier detection using machine learning</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-xs-12 col-sm-6">
             <h2 class="plot-header">Analysis-1</h2>
-            <a href=""></a><img src="../images/ConfusionMatrix.png" alt="Add desc"  class="comparison-image img-responsive"></a>
+            <a href=""></a><img src="../images/image1.png" alt="image1"  class="comparison-image img-responsive"></a>
             <hr class="visible-xs visible-sm">
             </div>
         <div class="col-md-6">
             <h2 class="plot-header">Analysis-2</h2>
-            <a href=""></a><img src="../images/ConfusionMatrix.png" alt="Add desc"  class="comparison-image img-responsive"></a>
+            <a href=""></a><img src="../images/image2.png" alt="image2"  class="comparison-image img-responsive"></a>
             <hr class="visible-xs visible-sm">
             </div>
         <div class="col-md-6">
           <h2 class="plot-header">Analysis-3</h2>
-          <a href=""></a><img src="../images/ConfusionMatrix.png" alt="Add desc" class="comparison-image img-responsive"></a>
+          <a href=""></a><img src="../images/image3.png" alt="image3" class="comparison-image img-responsive"></a>
           <hr class="visible-xs visible-sm">
         </div>
         <div class="col-md-6">
           <h2 class="plot-header">Analysis-4</h2>
-          <a href=""></a><img src="../images/ConfusionMatrix.png" alt="Add desc" class="comparison-image img-responsive"></a>
+          <a href=""></a><img src="../images/image4.png" alt="image4" class="comparison-image img-responsive"></a>
         </div>
       </article>
+      <div class="container">
+          <article class="description-content row">
+            <div class="col-md-12">
+                <h2 class="data-link">Click here for result.csv to check outliers</h2>
+            
+          </article>
     </div>
-    <!-- End of container  -->
+  
 
-    <!-- Start of footer ->
-    <footer class="footer navbar-fixed-bottom">
-      <div class="two-toned-footer-color"></div>
-      <p class="text-muted text-muted-footer text-center">
-        &copy; Copyright Data Analytics Bootcamp 2018
-      </p>
-    </footer>
-    <!-- End of footer -->
-
-    <!-- jQuery CDN -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-
-    <!-- Bootstrap CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="{{ url_for("static", filename="../js/code.js") }}"></script>
   </body>
 
 </html>
