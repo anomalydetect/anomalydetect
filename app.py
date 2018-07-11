@@ -54,6 +54,9 @@ def model_upload():
 			print(str(k) + ":" + str(v))
 
 		# call model, do magic and return to template
+		# v_my_id should be supplied here 
+		v_my_id = '123456'
+		fx_analysis(v_my_id)
 		return ('Got: time_series={}, dimension={}, label={}, fact={}, model={}'
 				.format(id, time_series, dimension, label, fact, model))
 
@@ -77,25 +80,27 @@ def home():
 def upload_complete():
 
 	"""Saves imported folder to server"""
-
+	### set upload folder 
 	unique_sequence = fx_uniqueid()
 	my_id = next(unique_sequence)
-
-	UPLOAD_FOLDER = 'db/data/' + str(my_id) 
-
-	os.makedirs(UPLOAD_FOLDER)
+	v_upload_folder = app.config['UPLOAD_BASE'] + str(my_id) 
+	app.config['UPLOAD_FOLDER'] = v_upload_folder 
+	### 
+	os.makedirs(app.config['UPLOAD_FOLDER'])
+		
 	print("I am in upload route", file=sys.stderr)
 	print("I am in upload route", file=sys.stdout)
-	ALLOWED_EXTENSIONS = set(['csv'])
-	
-	fx_analysis(str(my_id))
-	#fx_analysis('123456')
 
-	app = Flask(__name__)
-	app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+	print(app.config['UPLOAD_FOLDER'])
+
+	ALLOWED_EXTENSIONS = set(['csv'])
+
+
+	
 
 
 	return render_template("index.html")
+
 
 
 
