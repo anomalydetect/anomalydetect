@@ -5,22 +5,20 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/belly_button_biodiversity.sqlite"
 class Config(object):
-    SQLALCHEMY_TRACK_MODIFICATIONS = 0
-    SQLALCHEMY_RECORD_QUERIES = 1
-    SQLALCHEMY_ECHO = 0
+    UPLOAD_BASE = 'db/data/'
+
 
 
 class ProductionConfig(Config):
-    LOG_TO_STDOUT = 1
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI", "sqlite:///" + fix_path(basedir, "db/belly_button_biodiversity.sqlite"))
+	LOG_TO_STDOUT = 1
+	UPLOAD_BASE = 'db/data/'
 
 
 class DevelopmentConfig(Config):
-    DEBUG = 1
-    FLASK_DEBUG = 1
-    SQLALCHEMY_ECHO = 1
-    TEMPLATES_AUTO_RELOAD = 1
-    SQLALCHEMY_DATABASE_URI = os.getenv("DEV_DATABASE_URI", "sqlite:///" + fix_path(basedir, "db/belly_button_biodiversity.sqlite"))
+	DEBUG = 1
+	FLASK_DEBUG = 1
+	TEMPLATES_AUTO_RELOAD = 1
+	UPLOAD_BASE = 'db/data/'
 
 config = {
     "development": DevelopmentConfig,
