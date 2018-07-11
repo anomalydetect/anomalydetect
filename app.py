@@ -42,7 +42,6 @@ def model_upload():
 	print("I am in submit_form route with post", file=sys.stderr)
 	print("I am in submit_form route with post", file=sys.stdout)
 	if request.method == 'POST':
-		id = request.form.get('id')
 		time_series = request.form.get('time-series')
 		dimension = request.form.get('dimension')
 		label = request.form.get('label')
@@ -55,7 +54,7 @@ def model_upload():
 			print(str(k) + ":" + str(v))
 
 		# call model, do magic and return to template
-		return ('Got: id={}, time_series={}, dimension={}, label={}, fact={}, model={}'
+		return ('Got: time_series={}, dimension={}, label={}, fact={}, model={}'
 				.format(id, time_series, dimension, label, fact, model))
 
 	else:
