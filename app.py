@@ -1,5 +1,6 @@
 # import necessary libraries
 import os
+import sys
 import numpy as np
 import pandas as pd
 from flask import (
@@ -38,33 +39,37 @@ def fx_uniqueid():
 
 @app.route('/submit_form', methods=['GET', 'POST'])
 def model_upload():
-    if request.method == 'POST':
-        id = request.form.get('id')
-        time_series = request.form.get('time-series')
-        dimension = request.form.get('dimension')
-        label = request.form.get('label')
-        fact = request.form.get('fact')
-        model = request.form.get('model')
+	print("I am in root route with post", file=sys.stderr)
+	print("I am in root route with post", file=sys.stdout)
+	if request.method == 'POST':
+		id = request.form.get('id')
+		time_series = request.form.get('time-series')
+		dimension = request.form.get('dimension')
+		label = request.form.get('label')
+		fact = request.form.get('fact')
+		model = request.form.get('model')
 
-        # to debug
-        form = dict(request.form)
-        for k, v in form.items():
-            print(str(k) + ":" + str(v))
+		# to debug
+		form = dict(request.form)
+		for k, v in form.items():
+			print(str(k) + ":" + str(v))
 
-        # call model, do magic and return to template
-        return ('Got: id={}, time_series={}, dimension={}, label={}, fact={}, model={}'
-                .format(id, time_series, dimension, label, fact, model))
+		# call model, do magic and return to template
+		return ('Got: id={}, time_series={}, dimension={}, label={}, fact={}, model={}'
+				.format(id, time_series, dimension, label, fact, model))
 
-    else:
-        return "Nothing to see here."
+	else:
+		return "Nothing to see here."
 
 ######################################################
 
 # create route that renders index.html template
 @app.route("/")
 def home():
-    """Return the dashboard homepage"""
-    return render_template("index.html")
+	"""Return the dashboard homepage"""
+	print("I am in root route", file=sys.stderr)
+	print("I am in root route", file=sys.stdout)
+	return render_template("index.html")
 
 
 #########################################
@@ -72,22 +77,23 @@ def home():
 @app.route('/upload')
 def upload_complete():
 
-    """Saves imported folder to server"""
+	"""Saves imported folder to server"""
 
-    unique_sequence = fx_uniqueid()
-    my_id = next(unique_sequence)
+	unique_sequence = fx_uniqueid()
+	my_id = next(unique_sequence)
 
-    UPLOAD_FOLDER = 'db/data' + str(my_id)
+	UPLOAD_FOLDER = 'db/data' + str(my_id) 
 
-    os.makedirs(UPLOAD_FOLDER)
+	os.makedirs(UPLOAD_FOLDER)
+	print("I am in upload route", file=sys.stderr)
+	print("I am in upload route", file=sys.stdout)
+	ALLOWED_EXTENSIONS = set(['csv'])
 
-    ALLOWED_EXTENSIONS = set(['csv'])
-
-    app = Flask(__name__)
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+	app = Flask(__name__)
+	app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-    return render_template("index.html")
+	return render_template("index.html")
 
 
 
@@ -97,43 +103,49 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return ''
+	
+	print("I am in root route with post", file=sys.stderr)
+	print("I am in root route with post", file=sys.stdout)
+	if request.method == 'POST':
+		# check if the post request has the file part
+		if 'file' not in request.files:
+			flash('No file part')
+			return redirect(request.url)
+		file = request.files['file']
+		# if user does not select file, browser also
+		# submit a empty part without filename
+		if file.filename == '':
+			flash('No selected file')
+			return redirect(request.url)
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			return redirect(url_for('uploaded_file',
+									filename=filename))
+	return ''
 
-    from flask import send_from_directory
+from flask import send_from_directory
 
-    @app.route('/uploads/<filename>')
-    def uploaded_file(filename):
-        return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+	print("I am in uploads/filename route", file=sys.stderr)
+	print("I am in uploads/filename route", file=sys.stdout)
+	return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 #########################################
 @app.route('/submit/<v_uk_id>')
 def submit_complete(v_uk_id):
-    """
+	"""
 	a. JSON file of the column type allocation saved to ./uk_id folder
 	b. python function has been called like  (uk_id)
 	c. Calls fx_result(uk_id) that return 'Processing' or 'Ready'
 	d. if processing then show processing else show result in graph section.
 	   Template (submit_complete.html) can use jpeg file saved for 6 graphs and json files for any data.
-    """
+	"""
+	print("I am in submit/uk route", file=sys.stderr)
+	print("I am in submit/uk route", file=sys.stdout)
 
-
-    return render_template("result.html")
+	return render_template("result.html")
 
 
 #################################################
