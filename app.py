@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 from flask import send_from_directory
 import json
+import matplotlib
+matplotlib.use('Agg')
 from flask import (
     Flask,
     render_template,
