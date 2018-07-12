@@ -8,6 +8,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import sys
 
 def fx_analysis(v_uk_id):
 
@@ -23,8 +24,8 @@ def fx_analysis(v_uk_id):
 
     v_input_csv = my_path + input_json['filename']
     
-    v_learning_type = input_json['learning_type']
-    
+    v_learning_type = input_json['learning_type'][0]
+    print(v_learning_type, file=sys.stderr)
 
     if v_learning_type == 'supervised' :
         fx_supervised(v_uk_id)
