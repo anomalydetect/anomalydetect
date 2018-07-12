@@ -39,6 +39,7 @@ def fx_unsupervised(v_uk_id):
 	df2 = x_groupby_type.count()
 	df2.reset_index(inplace=True)
 	df3 = df2.sort_values(['data'], ascending=True).head(4)
+	df3.reset_index(inplace=True)
 
 	for i, r in df3.iterrows():
 		v_filename = 'image'+str(i)
