@@ -76,10 +76,10 @@ def model_upload():
 			return render_template('index.html', error_msg=error_msg)
 
 		# get form values
-		time_series = request.form.get('time-series')
-		dimension = request.form.get('dimension')
-		label = request.form.get('label')
-		fact = request.form.get('fact')
+		time_series = request.form.getlist('time-series')
+		dimension = request.form.getlist('dimension')
+		label = request.form.getlist('label')
+		fact = request.form.getlist('fact')
 		learning_type = request.form.get('learning_type')
 
 		# to debug
@@ -87,7 +87,6 @@ def model_upload():
 		form = dict(request.form)
 		for k, v in form.items():
 			print(str(k) + ":" + str(v))
-
 
 		##################################json code
 		v_output_json_contents = {
