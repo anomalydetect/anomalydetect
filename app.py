@@ -109,7 +109,8 @@ def model_upload():
 
 		# call model fucntions to create images
 		#fx_analysis (v_unique_id) 
-		return render_template("result.html" , v_unique_id = v_unique_id ,v_upload_folder = v_upload_folder )
+		v_result_csv_url = v_upload_folder + '/result.csv'
+		return render_template("result.html" , v_unique_id = v_unique_id ,v_upload_folder = v_upload_folder , v_result_csv_url=v_result_csv_url)
 
 	else:
 		return "Nothing to see here."
