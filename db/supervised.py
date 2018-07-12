@@ -10,18 +10,20 @@ from sklearn.externals import joblib
 
 def fx_supervised(v_uk_id):
     # 
-    my_path = "data/"+v_uk_id+"/"
+    my_path = "db/data/"+v_uk_id+"/"
     v_input_json_file = my_path+"details.json"
-    v_output_json_file = my_path+"result_desc.json"
-    
-    
+    #v_output_json_file = my_path+"result_desc.json"
+        
     input_json = mpu.io.read(v_input_json_file)
-    output_json = mpu.io.read(v_output_json_file)
+    #output_json = mpu.io.read(v_output_json_file)
     
     v_input_csv = my_path + input_json['filename']
     #v_input_csv = my_path + 'demo.csv'
+	
+    v_output_result_csv = my_path+"result.csv"
     
     data = pd.read_csv(v_input_csv)
+	
     ######################
     # Get labels for outliers and normal from dataset 
     ######################
@@ -36,7 +38,8 @@ def fx_supervised(v_uk_id):
     # Get counts and pct of outlier records compared with general population
     ######################
     countOutliers = len(data[(data[v_label]==outlier)])
-    countNormal = len(data[(data[v_label]==normal)])
+    countNormal = len(data[(data[v_label]==normal)])	
+    data[(data[v_label]==outlier)].to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
     #
     count_classes = pd.value_counts(data[v_label], sort = True).sort_index()
     fig = plt.figure() 
@@ -163,6 +166,8 @@ def fx_supervised(v_uk_id):
                       , classes=class_names
                       , title='Confusion matrix')
     fig.savefig(my_path + "image4.png")
+	
+    df_outliers.to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
     
     
 import itertools
