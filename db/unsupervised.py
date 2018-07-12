@@ -9,7 +9,7 @@ import json
 
 def fx_unsupervised(v_uk_id):
     #v_uk_id= 123456
-    my_path = "db/data/" + v_uk_id + "/"
+    my_path =  'db/data/' + v_uk_id + "/"
     v_input_json_file = my_path + "details.json"
     v_output_json_file = my_path + "result_desc.json"
     v_output_result_csv = my_path+"result_individual_columns.csv"
@@ -17,7 +17,7 @@ def fx_unsupervised(v_uk_id):
     with open(v_input_json_file, encoding="utf-8") as data_file:
         input_json = json.load(data_file)
 
-    v_input_csv = my_path + input_json['filename']
+    v_input_csv = input_json['filename']
 
     df = pd.read_csv(v_input_csv)
     df['anomalydetectid']=df.index

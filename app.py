@@ -54,7 +54,7 @@ def create_upload_folder():
 	print("I am in upload route", file=sys.stderr)
 	print("I am in upload route", file=sys.stdout)
 	print("Created new folder: " + v_upload_folder)
-	return v_upload_folder
+	return v_upload_folder , v_unique_id
 
 
 @app.route('/submit_form', methods=['GET', 'POST'])
@@ -64,7 +64,7 @@ def model_upload():
 
 	if request.method == 'POST':
     
-		v_upload_folder = create_upload_folder()
+		v_upload_folder , v_unique_id = create_upload_folder()
 		v_output_data_file = v_upload_folder + "/" + "custom_anomaly_data.csv"
 		v_output_json_file = v_upload_folder + "/" + "details.json"
 
@@ -108,7 +108,8 @@ def model_upload():
 			json.dump(v_output_json_contents, outfile)
 
 		# call model fucntions to create images
-		return render_template("result.html")
+		#fx_analysis (v_unique_id) 
+		return render_template("result.html" , v_unique_id = v_unique_id ,v_upload_folder = v_upload_folder )
 
 	else:
 		return "Nothing to see here."
