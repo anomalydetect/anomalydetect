@@ -76,7 +76,7 @@ select {
   padding: 20px;
   margin: 0;
   background: rgb(51, 48, 48);
-  background-image: url("../../images/anomaly.jpg");
+  background-image: url("/static/images/anomaly.jpg");
   background-attachment: fixed;
   background-position: bottom center;
   background-size: cover;
@@ -449,5 +449,3 @@ body {
   color: #11125f;
   text-align: center;
 }
-
-
