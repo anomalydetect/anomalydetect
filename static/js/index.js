@@ -2,7 +2,7 @@
 // Loading CSV File
 //**************************************************//
 
-const file = document.getElementById('file')
+
 const reader = new FileReader()
 
 reader.addEventListener("load", function(e) {
@@ -42,6 +42,8 @@ reader.addEventListener("load", function(e) {
                 .html(function(d) { return d.value.trim() });
         })
 })
+
+var file = document.getElementById('file')
 
 file.addEventListener('change', function(e) {
     const f = e.target.files[0]
