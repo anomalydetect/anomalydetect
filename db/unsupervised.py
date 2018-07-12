@@ -78,13 +78,13 @@ def fx_unsupervised(v_uk_id):
 def fx_scatter_plot (v_uk_id , v_id_series,v_column_series , v_title,v_filename ):
     my_path = "db/data/" + v_uk_id + "/"
     fig, ax = plt.subplots()
-    jpg_filename = my_path + v_filename+'.jpg'
+    #jpg_filename = my_path + v_filename+'.jpg'
     png_filename = my_path + v_filename
     ax.scatter(v_id_series,v_column_series)
     ax.set_title(v_title)
     fig.tight_layout()
     #fig.show()
-    fig.savefig(jpg_filename, dpi=1000)
+    #fig.savefig(jpg_filename, dpi=1000)
     fig.savefig(png_filename+'.png', dpi=1000)
 	
 	
