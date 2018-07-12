@@ -36,7 +36,7 @@
           <div class="navbar-header">
             <div class="col-md-9">
                     <a class="navbar-brand" href="./index.html">Detecting Outliers
-                        <img class="nav-detect" src="../images/anomaly_detection.jpg">
+                        <img class="nav-detect" src= "{{ url_for('static', filename='images//anomaly_detection.jpg') }}">
                     </a>
             </div>
           </div>
@@ -54,29 +54,29 @@
         </div>
         <div class="col-xs-12 col-sm-6">
             <h2 class="plot-header">Analysis-1</h2>
-            <a href=""></a><img src="../images/image1.png" alt="image1"  class="comparison-image img-responsive"></a>
+            <a href=""></a><img src={{v_upload_folder}} alt="image1"  class="comparison-image img-responsive"></a>
             <hr class="visible-xs visible-sm">
             </div>
         <div class="col-md-6">
             <h2 class="plot-header">Analysis-2</h2>
-            <a href=""></a><img src="../images/image2.png" alt="image2"  class="comparison-image img-responsive"></a>
+            <a href=""></a><img src={{v_upload_folder}} alt="image2"  class="comparison-image img-responsive"></a>
             <hr class="visible-xs visible-sm">
             </div>
         <div class="col-md-6">
           <h2 class="plot-header">Analysis-3</h2>
-          <a href=""></a><img src="../images/image3.png" alt="image3" class="comparison-image img-responsive"></a>
+          <a href=""></a><img src={{v_upload_folder}} alt="image3" class="comparison-image img-responsive"></a>
           <hr class="visible-xs visible-sm">
         </div>
         <div class="col-md-6">
           <h2 class="plot-header">Analysis-4</h2>
-          <a href=""></a><img src="../images/image4.png" alt="image4" class="comparison-image img-responsive"></a>
+          <a href=""></a><img src={{v_upload_folder}} alt="image4" class="comparison-image img-responsive"></a>
         </div>
       </article>
   </div>
   <div class="container">
     <article class="description-content row">
       <div class="col-md-12">
-        <h2 class="data-link">  Click here for results to check anomalies in selected data <a href={{v_result_csv_url}}> result</a></h2>
+        <h2 class="data-link">Click <a href={{v_result_csv_url}}>here</a> for results to check anomalies in selected data </h2>
       </div>
     </article>
   </div>
