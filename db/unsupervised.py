@@ -23,7 +23,7 @@ def fx_unsupervised(v_uk_id):
 	df['anomalydetectid']=df.index
 	######################
 	v_id = 'anomalydetectid'
-	v_analysis_columns_list = [input_json['dimension']]
+	v_analysis_columns_list = input_json['dimension']
 	df_outliers = pd.DataFrame({})
 	#v_analysis_columns = ''.join(v_analysis_columns_list)
 	for my_analysis_column in v_analysis_columns_list:
