@@ -110,7 +110,7 @@ def model_upload():
 		# call model fucntions to create images
 		#fx_analysis (v_unique_id) 
 		#v_result_csv_url = v_upload_folder + '/result.csv'
-		v_result_csv_url =  'http://127.0.0.1:5000/uploads/'+v_unique_id+'/result.csv'
+		v_result_csv_url =  'uploads/'+v_unique_id+'/result.csv'
 		return render_template("result.html" , v_unique_id = v_unique_id ,v_upload_folder = v_upload_folder , v_result_csv_url=v_result_csv_url)
 
 	else:
