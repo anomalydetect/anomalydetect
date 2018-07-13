@@ -17,7 +17,7 @@ def fx_supervised(v_uk_id):
     input_json = mpu.io.read(v_input_json_file)
     #output_json = mpu.io.read(v_output_json_file)
     
-    v_input_csv = my_path + input_json['filename']
+    v_input_csv = input_json['filename']
     #v_input_csv = my_path + 'demo.csv'
 	
     v_output_result_csv = my_path+"result.csv"
@@ -38,8 +38,9 @@ def fx_supervised(v_uk_id):
     # Get counts and pct of outlier records compared with general population
     ######################
     countOutliers = len(data[(data[v_label]==outlier)])
-    countNormal = len(data[(data[v_label]==normal)])	
-    data[(data[v_label]==outlier)].to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
+    countNormal = len(data[(data[v_label]==normal)])
+    df_outliers = data[(data[v_label]==outlier)]
+    df_outliers.to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
     #
     count_classes = pd.value_counts(data[v_label], sort = True).sort_index()
     fig = plt.figure() 
@@ -47,7 +48,7 @@ def fx_supervised(v_uk_id):
     plt.title("Fraud class histogram")
     plt.xlabel("Class")
     plt.ylabel("Frequency")
-    fig.savefig(my_path + "image1.png")    
+    fig.savefig(my_path + "image0.png")    
     
     pctOutliers = countOutliers/(countOutliers+countNormal)*100
     print("Percent of outliers is " + str(pctOutliers))
@@ -111,11 +112,11 @@ def fx_supervised(v_uk_id):
 
         # Plot non-normalized confusion matrix
         class_names = [0,1]
-        plt.figure()
+        fig = plt.figure()
         plot_confusion_matrix(cnf_matrix
                       , classes=class_names
                       , title='Confusion matrix')
-        fig.savefig(my_path + "image2.png")
+        fig.savefig(my_path + "image1.png")
         
         # again train logistic Regression model with undersampled dataset
         lr = LogisticRegression(C = best_c, penalty = 'l1')
@@ -131,11 +132,11 @@ def fx_supervised(v_uk_id):
         print("Recall metric in the original testing dataset: ", cnf_matrix[1,1]/(cnf_matrix[1,0]+cnf_matrix[1,1]))
         # Plot non-normalized confusion matrix
         class_names = [0,1]
-        plt.figure()
+        fig = plt.figure()
         plot_confusion_matrix(cnf_matrix
                       , classes=class_names
                       , title='Confusion matrix')
-        fig.savefig(my_path + "image3.png")       
+        fig.savefig(my_path + "image2.png")       
     best_c = 10
     # Use this C_parameter to build the final model with the whole training dataset and predict the classes in the test
     # dataset
@@ -161,11 +162,11 @@ def fx_supervised(v_uk_id):
 
     # Plot non-normalized confusion matrix
     class_names = [0,1]
-    plt.figure()
+    fig = plt.figure()
     plot_confusion_matrix(cnf_matrix
                       , classes=class_names
                       , title='Confusion matrix')
-    fig.savefig(my_path + "image4.png")
+    fig.savefig(my_path + "image3.png")
 	
     df_outliers.to_csv(v_output_result_csv, encoding="utf-8", index=False, header=True)
     

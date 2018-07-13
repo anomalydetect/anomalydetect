@@ -27,7 +27,7 @@ def fx_analysis(v_uk_id):
     v_learning_type = input_json['learning_type'][0]
     print(v_learning_type, file=sys.stderr)
 
-    if v_learning_type == 'supervised' :
+    if v_learning_type == 'Supervised' :
         fx_supervised(v_uk_id)
     else :
         fx_unsupervised(v_uk_id)
