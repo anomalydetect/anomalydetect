@@ -8,6 +8,15 @@ from statsmodels.stats.stattools import medcouple
 import json
 
 def fx_unsupervised(v_uk_id):
+	'''
+	It does run unsupervised models for unique identifier
+	It uses definations in details.json
+	It creates result.csv as outlier file in unique identifier folder
+	It creates scatter plots for top four outliers
+
+	Usage : 
+	fx_unsupervised('1233456')
+	'''
 	#v_uk_id= 123456
 	my_path =  'db/data/' + v_uk_id + "/"
 	v_input_json_file = my_path + "details.json"
@@ -51,6 +60,7 @@ def fx_unsupervised(v_uk_id):
 		fx_scatter_plot(v_uk_id,df['anomalydetectid'].values,df[v_column].values, v_title,v_filename)
 
 	##################################json code 
+	###### Below code is not used. But kept here for future implementation
 	v_output_json_contents = {
 			"image_title1": "nish1",
 			"image_title2": "jfbgcjshhgsj",
@@ -78,31 +88,44 @@ def fx_unsupervised(v_uk_id):
 
 
 def fx_scatter_plot (v_uk_id , v_id_series,v_column_series , v_title,v_filename ):
-    my_path = "db/data/" + v_uk_id + "/"
-    fig, ax = plt.subplots()
-    #jpg_filename = my_path + v_filename+'.jpg'
-    png_filename = my_path + v_filename
-    ax.scatter(v_id_series,v_column_series)
-    ax.set_title(v_title)
-    fig.tight_layout()
-    #fig.show()
-    #fig.savefig(jpg_filename, dpi=1000)
-    fig.savefig(png_filename+'.png', dpi=1000)
+	'''
+	creates scatter plots
+
+	Usage : 
+	fx_scatter_plot(v_uk_id,df['anomalydetectid'].values,df[v_column].values, v_title,v_filename)
+	'''
+	my_path = "db/data/" + v_uk_id + "/"
+	fig, ax = plt.subplots()
+	#jpg_filename = my_path + v_filename+'.jpg'
+	png_filename = my_path + v_filename
+	ax.scatter(v_id_series,v_column_series)
+	ax.set_title(v_title)
+	fig.tight_layout()
+	#fig.show()
+	#fig.savefig(jpg_filename, dpi=1000)
+	fig.savefig(png_filename+'.png', dpi=1000)
 	
 	
 	
 def fx_box_plot (v_uk_id,v_list , v_title,v_filename ):
-    my_path = "db/data/" + v_uk_id + "/"
-    fig, ax = plt.subplots()
-    jpg_filename = my_path + v_filename+'.jpg'
-    png_filename = my_path + v_filename+'.png'
-    x = range(len(v_list))
-    ax.boxplot(v_list, patch_artist=True)
-    ax.set_title(v_title)
-    fig.tight_layout()
-    #fig.show()
-    fig.savefig(jpg_filename, dpi=1000)
-    fig.savefig(png_filename+'.png', dpi=1000)
+	'''
+	creates box plots
+
+	Usage : 
+	fx_box_plot(v_uk_id,df['anomalydetectid'].values,df[v_column].values, v_title,v_filename)
+
+	'''
+	my_path = "db/data/" + v_uk_id + "/"
+	fig, ax = plt.subplots()
+	jpg_filename = my_path + v_filename+'.jpg'
+	png_filename = my_path + v_filename+'.png'
+	x = range(len(v_list))
+	ax.boxplot(v_list, patch_artist=True)
+	ax.set_title(v_title)
+	fig.tight_layout()
+	#fig.show()
+	fig.savefig(jpg_filename, dpi=1000)
+	fig.savefig(png_filename+'.png', dpi=1000)
 	
 def fx_ThreeSigmaRule(series_id, series_data, v_number_of_std, v_masking_Iteration):
 	'''
@@ -112,7 +135,7 @@ def fx_ThreeSigmaRule(series_id, series_data, v_number_of_std, v_masking_Iterati
 	n =2 -->  95
 	n= 3  --> 99.7
 	Usage : 
-	df_outliers= fx_ThreeSigmaRule(df['myid'],df['series1'], 2,2)
+	v_df_temp = fx_ThreeSigmaRule(df[v_id], df[my_analysis_column], 2, 1)
 	df_outliers
 	Good for normal distributed data ---series or sequences
 	Drawback :
